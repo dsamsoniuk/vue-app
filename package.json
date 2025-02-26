@@ -1,10 +1,11 @@
 {
   "name": "electron-app",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,10 @@
         "owner": "dsamsoniuk",
         "private": true
       }
-    ]
+    ],
+    "directories": {
+      "output": "dist"
+    }
   },
   "author": "dd",
   "license": "ISC",
@@ -29,9 +33,10 @@
   "homepage": "https://github.com/dsamsoniuk/vue-app#readme",
   "description": "",
   "devDependencies": {
-    "electron": "^34.2.0"
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8",
+    "electron-updater": "^6.3.9"
   },
   "dependencies": {
-    "electron-builder": "^25.1.8"
   }
 }
