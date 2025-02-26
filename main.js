@@ -18,7 +18,7 @@ app.whenReady().then(() => {
 
   mainWindow.loadFile("index.html");
 
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdates();
 
   mainWindow.on("closed", () => {
     mainWindow = null;
@@ -30,6 +30,9 @@ app.whenReady().then(() => {
 });
 
 
+setInterval(() => {
+  autoUpdater.checkForUpdates();
+}, 1 * 30 * 1000); // Co 30s
 
 autoUpdater.on("update-available", () => {
   dialog.showMessageBox({
