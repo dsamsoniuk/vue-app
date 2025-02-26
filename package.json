@@ -1,24 +1,19 @@
 {
   "name": "electron-app",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dist": "electron-builder"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dsamsoniuk/vue-app.git"
-  },
+  "repository": "https://github.com/dsamsoniuk/vue-app",
   "build": {
     "appId": "com.electron.myapp",
     "publish": [
       {
         "provider": "github",
-        "repo": "https://github.com/dsamsoniuk/vue-app",
-        "owner": "dsamsoniuk",
-        "private": true
+        "repo": "https://github.com/dsamsoniuk/vue-app"
       }
     ],
     "directories": {
