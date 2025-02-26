@@ -1,9 +1,9 @@
-const { app, BrowserWindow, dialog } = require("electron");
-const { autoUpdater, AppUpdater } = require("electron-updater");
+const { app, BrowserWindow, dialog, autoUpdater } = require("electron");
+// const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
 
-autoUpdater.autoDownload = false;
+// autoUpdater.autoDownload = false;
 
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
@@ -18,12 +18,13 @@ app.whenReady().then(() => {
 
   mainWindow.loadFile("index.html");
 
+  autoUpdater.checkForUpdatesAndNotify();
+
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
 
-  
-  autoUpdater.checkForUpdatesAndNotify();
+
   // autoUpdater.checkForUpdates();
   // mainWindow.showMessage(`Checking for updates. Current version ${app.getVersion()}`);
 });
