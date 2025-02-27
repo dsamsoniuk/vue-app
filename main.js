@@ -1,30 +1,45 @@
 const { app, BrowserWindow, dialog, autoUpdater } = require("electron");
 // const { autoUpdater } = require("electron-updater");
+// const log = require('electron-log');
 
 let mainWindow;
 
+// log.initialize();
+// log.info('Log from the main process');
 // autoUpdater.autoDownload = false;
+// autoUpdater.logger = log;
+
+function showMessage(msg){
+  mainWindow.webContents.send("show-message", 
+    'ver:'+ app.getVersion() + '\n' +
+    msg
+  );
+}
+
 
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: true,  
+      contextIsolation: true,
+      preload: __dirname + "/preload.js", // Bezpieczeństwo: oddzielamy kod
     },
   });
 
   mainWindow.webContents.openDevTools(); // debugger
 
   mainWindow.loadFile("index.html");
-  autoUpdater.setFeedURL('https://github.com/dsamsoniuk/vue-app');
+  // autoUpdater.setFeedURL('https://github.com/dsamsoniuk/vue-app');
 
   autoUpdater.checkForUpdates();
-  console.log('start')
+
 
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
+  showMessage('start')
 
 
   // autoUpdater.checkForUpdates();
@@ -34,15 +49,17 @@ app.whenReady().then(() => {
 
 setInterval(() => {
   autoUpdater.checkForUpdates();
-  console.log('sprawdzam' )
-}, 15 * 1000); // Co 30s
+  showMessage('sprawdzam')
+
+}, 6 * 1000); // Co 30s
 
 autoUpdater.on("checking-for-update", () => {
-  console.log("Sprawdzanie aktualizacji...");
+  showMessage('sprawdzam aktualizacje')
+
 });
 
 autoUpdater.on("update-available", () => {
-  console.log("aktualizacja dostepna");
+  showMessage("aktualizacja dostepna");
   dialog.showMessageBox({
       type: "info",
       title: "Aktualizacja dostępna",
@@ -50,13 +67,14 @@ autoUpdater.on("update-available", () => {
       buttons: ["OK"]
   });
 });
+
 autoUpdater.on("update-not-available", () => {
-  console.log("aktualizacja NIE dostepna");
+  showMessage("aktualizacja NIE dostepna");
 
 });
 
 autoUpdater.on("update-downloaded", () => {
-  console.log("aktualizacja pobrana...");
+  showMessage("aktualizacja pobrana...");
   dialog.showMessageBox({
       type: "info",
       title: "Aktualizacja gotowa",
@@ -67,8 +85,14 @@ autoUpdater.on("update-downloaded", () => {
   });
 });
 autoUpdater.on("error", (err) => {
-  console.log("Błąd aktualizacji:", err);
+  showMessage("Błąd aktualizacji:", err);
 });
+
+
+//Global exception handler
+// process.on("uncaughtException", function (err) {
+//   console.log(err);
+// });
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
