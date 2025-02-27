@@ -1,6 +1,6 @@
 {
   "name": "electron-app",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -10,12 +10,11 @@
   "repository": "https://github.com/dsamsoniuk/vue-app",
   "build": {
     "appId": "com.electron.myapp",
+    "productName": "mini-app",
     "publish": [
       {
         "provider": "github",
-        "repo": "https://github.com/dsamsoniuk/vue-app",
-        "owner": "dsamsoniuk",
-        "private": false
+        "releaseType": "release"
       }
     ],
     "directories": {

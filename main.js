@@ -17,8 +17,10 @@ app.whenReady().then(() => {
   mainWindow.webContents.openDevTools(); // debugger
 
   mainWindow.loadFile("index.html");
+  autoUpdater.setFeedURL('https://github.com/dsamsoniuk/vue-app');
 
   autoUpdater.checkForUpdates();
+  console.log('start')
 
   mainWindow.on("closed", () => {
     mainWindow = null;
@@ -32,9 +34,15 @@ app.whenReady().then(() => {
 
 setInterval(() => {
   autoUpdater.checkForUpdates();
-}, 1 * 30 * 1000); // Co 30s
+  console.log('sprawdzam' )
+}, 15 * 1000); // Co 30s
+
+autoUpdater.on("checking-for-update", () => {
+  console.log("Sprawdzanie aktualizacji...");
+});
 
 autoUpdater.on("update-available", () => {
+  console.log("aktualizacja dostepna");
   dialog.showMessageBox({
       type: "info",
       title: "Aktualizacja dostępna",
@@ -42,8 +50,13 @@ autoUpdater.on("update-available", () => {
       buttons: ["OK"]
   });
 });
+autoUpdater.on("update-not-available", () => {
+  console.log("aktualizacja NIE dostepna");
+
+});
 
 autoUpdater.on("update-downloaded", () => {
+  console.log("aktualizacja pobrana...");
   dialog.showMessageBox({
       type: "info",
       title: "Aktualizacja gotowa",
@@ -53,7 +66,9 @@ autoUpdater.on("update-downloaded", () => {
       autoUpdater.quitAndInstall();
   });
 });
-
+autoUpdater.on("error", (err) => {
+  console.log("Błąd aktualizacji:", err);
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
