@@ -1,0 +1,9 @@
+version: 1.4.2
+files:
+  - url: mini-app-1.4.2.AppImage
+    sha512: muavdhqF232/3KRZwnsgiNicF7GmGJVAHi6+72k2tNpgCYCadBgK1pNkcb4NTE1sDCc/b6fTsn1EjH0ZwSqNjw==
+    size: 85233822
+    blockMapSize: 90290
+path: mini-app-1.4.2.AppImage
+sha512: muavdhqF232/3KRZwnsgiNicF7GmGJVAHi6+72k2tNpgCYCadBgK1pNkcb4NTE1sDCc/b6fTsn1EjH0ZwSqNjw==
+releaseDate: '2025-03-03T14:51:32.191Z'

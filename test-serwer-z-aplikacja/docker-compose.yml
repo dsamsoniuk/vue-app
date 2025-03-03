@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # Serwer PHP
+  # php:
+  #   build:
+  #       context: ./docker/php
+  #   container_name: php
+  #   volumes:
+  #     - ./:/var/www/html          # Montowanie aplikacji z lokalnego folderu
+  #     - "./docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+  #     - "~/.ssh:/root/.ssh"
+  #   # restart: always
+  #   depends_on:
+  #     - mysql                        # Uruchamia się po MySQL
+  # Serwer Nginx
+  nginx:
+    image: nginx:1.21-alpine         # Używamy lekkiej wersji Nginx z Alpine
+    # container_name: nginx
+    volumes:
+      - ./magazyn:/var/www/html          # Montowanie aplikacji z lokalnego folderu
+      - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf  # Montowanie pliku konfiguracyjnego Nginx
+    ports:
+      - "80:80"                      # Mapowanie portu HTTP
+    # restart: always
+    # depends_on:
+    #   - php                          # Uruchamia się po PHP
+
+# volumes:
+#   db-data:                           # Definicja wolumenu dla danych MySQL
+#   db-data-test:                           # Definicja wolumenu dla danych MySQL

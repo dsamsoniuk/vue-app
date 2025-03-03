@@ -1,0 +1,14 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.electron.myapp
+productName: mini-app
+publish:
+  - provider: generic
+    url: http://localhost/downloads
+linux:
+  target:
+    - AppImage
+  category: Utility
+files: []
+electronVersion: 19.1.9
