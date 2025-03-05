@@ -16,7 +16,15 @@
 
 Dodawanie build-a z vite
 
-- pierw odpalamy `npm run publish` aby opublikowac zmiany lokalnie do katalogu .vite i out/ wejda
+- pierw odpalamy `npm run package` aby opublikowac zmiany lokalnie do katalogu .vite i out/ wejda
 - a nastepnie `npm run dist` w katalogu dist/ pojawi sie aplikacja
 
 
+## Dodatkowe informacje
+
+- aby zbudowac aplikacje na windows a korzystasz z linux-a musisz miec Wine zainstalowane na PC
+
+
+electron-forge make	Tworzy finalne pliki aplikacji (.exe, .dmg, .AppImage itp.), ale bez publikowania ich.
+electron-forge package	Pakietuje aplikację do folderu bez tworzenia instalatora (np. out/ z your-app.exe).
+electron-forge publish	Wysyła aplikację na serwer (np. GitHub Releases, S3) po wcześniejszym wykonaniu make.

@@ -1,6 +1,7 @@
 import { app, BrowserWindow, dialog } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
+const os = require("os");
 
 const { autoUpdater } = require("electron-updater");
 const log = require('electron-log');
@@ -13,6 +14,14 @@ if (started) {
 console.log('Mode:', app.isPackaged ? 'Production' : 'Development');
 
 let mainWindow;
+
+let updateUrl = "";
+if (os.platform() === "win32") {
+    updateUrl = "http://192.168.0.15/downloads/windows";
+} else if (os.platform() === "linux") {
+    updateUrl = "http://localhost/downloads/linux";
+}
+autoUpdater.setFeedURL({ provider: "generic", url: updateUrl });
 
 function showMessage(msg){
   mainWindow.webContents.send("show-message", 

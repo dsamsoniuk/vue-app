@@ -1,7 +1,7 @@
 {
   "name": "my-vue-app",
   "productName": "my-vue-app",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "My Electron application description",
   "main": ".vite/build/main.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "dist": "electron-builder"
+    "dist": "electron-builder --linux",
+    "dist-win": "electron-builder --win --x64"
   },
   "build": {
     "appId": "com.electron.myapp",
@@ -18,7 +19,15 @@
     "publish": [
       {
         "provider": "generic",
-        "url": "http://localhost/downloads"
+        "url": "http://192.168.0.15/downloads/windows",
+        "channel": "latest",
+        "updaterCacheDirName": "windows"
+      },
+      {
+        "provider": "generic",
+        "url": "http://localhost/downloads/linux",
+        "channel": "latest",
+        "updaterCacheDirName": "linux"
       }
     ],
     "linux": {
