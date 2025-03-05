@@ -1,13 +1,17 @@
 {
-  "name": "electron-app",
-  "version": "1.4.1",
-  "main": "main.js",
+  "name": "my-vue-app",
+  "productName": "my-vue-app",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": ".vite/build/main.js",
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
     "dist": "electron-builder"
   },
-  "repository": "https://github.com/dsamsoniuk/vue-app",
   "build": {
     "appId": "com.electron.myapp",
     "productName": "mini-app",
@@ -23,24 +27,41 @@
       ],
       "category": "Utility"
     },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
     "directories": {
       "output": "dist"
     }
   },
-  "author": "dd",
-  "email": "damian@electest.pp",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dsamsoniuk/vue-app/issues"
+  "keywords": [],
+  "author": {
+    "name": "damians",
+    "email": "damian@passwordit.pl"
   },
-  "homepage": "https://github.com/dsamsoniuk/vue-app#readme",
-  "description": "",
+  "license": "MIT",
   "devDependencies": {
-    "electron": "^19.0.9",
-    "electron-builder": "^23.6.0"
+    "@electron-forge/cli": "^7.7.0",
+    "@electron-forge/maker-deb": "^7.7.0",
+    "@electron-forge/maker-rpm": "^7.7.0",
+    "@electron-forge/maker-squirrel": "^7.7.0",
+    "@electron-forge/maker-zip": "^7.7.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.7.0",
+    "@electron-forge/plugin-fuses": "^7.7.0",
+    "@electron-forge/plugin-vite": "^7.7.0",
+    "@electron/fuses": "^1.8.0",
+    "electron": "35.0.0",
+    "vite": "^5.4.14",
+    "electron-builder": "^25.1.8",
+    "@vitejs/plugin-vue": "^5.2.1"
   },
   "dependencies": {
     "electron-log": "^5.3.1",
-    "electron-updater": "^5.3.0"
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-updater": "^6.3.9",
+    "vue": "^3.5.13"
   }
 }
