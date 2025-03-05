@@ -1,5 +1,9 @@
-## Proces stawiania testowej aplikacji Electron
 
+## Wstepne działania:
+
+`npm i`
+
+## Proces stawiania testowej aplikacji Electron
 
 1. wchodzimy w test-server-z-aplikacja/ a tam uruchamiamy dockera, to jest serwer testowy gdzie sa build-y aplikacju umieszczone.
 
